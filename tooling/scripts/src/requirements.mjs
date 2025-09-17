@@ -27,20 +27,20 @@ function checkPnpmVersion() {
     process.exit(1);
   }
 
-  if (major < 9) {
+  if (major < 8) {
     console.error(
       `\x1b[31m%s\x1b[0m`,
-      `You are running pnpm ${currentPnpmVersion}. Makerkit requires pnpm ${requiredPnpmVersion}.`,
+      `You are running pnpm ${currentPnpmVersion}. Makerkit requires pnpm 8.0.0 or higher.`,
     );
 
     process.exit(1);
   }
 
-  // warn if the minor version is less than 12
-  if (minor < 12) {
+  // warn if version is less than 9.12.0
+  if (major < 9 || (major === 9 && minor < 12)) {
     console.warn(
       `\x1b[33m%s\x1b[0m`,
-      `You are running pnpm ${currentPnpmVersion}. Makerkit recommends using pnpm 9.12.0 or higher.`,
+      `You are running pnpm ${currentPnpmVersion}. Makerkit recommends using pnpm 9.12.0 or higher, but will continue with current version.`,
     );
   } else {
     console.log(
